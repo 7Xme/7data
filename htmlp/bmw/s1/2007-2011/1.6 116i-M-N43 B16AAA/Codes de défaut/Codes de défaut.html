@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identification des codes de défaut</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+
+        .menu {
+            width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .menu-item {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .menu-item:last-child{
+            border-bottom:none;
+        }
+
+        .menu-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .table-container {
+            display: none;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th{
+            background-color:#eee;
+        }
+        .image-container{
+            display:none;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="menu-item" data-target="tous-les-codes">Tous les codes</div>
+        <div class="menu-item" data-target="p0">Identification des codes de défaut - EOBD P0</div>
+        <div class="menu-item" data-target="p2">Identification des codes de défaut - EOBD P2</div>
+        <div class="menu-item" data-target="p34xx">Identification des codes de défaut - EOBD P34xx</div>
+        <div class="menu-item" data-target="u0">Identification des codes de défaut - EOBD U0</div>
+        <div class="menu-item" data-target="u3">Identification des codes de défaut - EOBD U3</div>
+        <div class="menu-item" data-target="type-panne">Identification des codes de défaut - type de panne</div>
+        <div class="menu-item" data-target="prise-diagnostic">Prise diagnostic</div>
+    </div>
+
+    <div class="table-container" id="tous-les-codes">
+        <table>
+            <thead>
+                <tr><th>Type EOBD</th><th>Localisation du défaut</th><th>Cause probable</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>P0, P2, P34xx, U0, U3, Type de panne</td><td>Consulter les tableaux de codes de défaut EOBD</td><td></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-container" id="p0">
+        <table>
+            <thead>
+                <tr><th>Type EOBD</th><th>Localisation du défaut</th><th>Cause probable</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>P1004</td><td>Distribution variable, ligne 1 panne du circuit</td><td>Câblage, connexions</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-container" id="p2">
+        <table>
+            <thead>
+                <tr><th>Type EOBD</th><th>Localisation du défaut</th><th>Cause probable</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>P1005</td><td>Distribution variable, ligne 1 erreur de réinitialisation du circuit du capteur</td><td>Câblage, connexions</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-container" id="p34xx">
+        <table>
+            <thead>
+                <tr><th>Type EOBD</th><th>Localisation du défaut</th><th>Cause probable</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>P1006</td><td>Distribution variable, ligne 1 erreur de parité du circuit du capteur</td><td>Câblage, connexions</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-container" id="u0">
+        <table>
+            <thead>
+                <tr><th>Type EOBD</th><th>Localisation du défaut</th><th>Cause probable</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>P1007</td><td>Distribution variable, ligne 1 erreur de gradient du circuit du capteur.</td><td>Câblage, connexions</td></tr>
+            </tbody>
+        </table>
+    </div>
+        <div class="table-container" id="u3">
+        <table>
+            <thead>
+                <tr><th>Type EOBD</th><th>Localisation du défaut</th><th>Cause probable</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>P100A</td><td>Pression de carburant - trop faible, ligne 2</td><td>Fuite de carburant, pompe à carburant, électrovanne de commande de régulateur de pression de carburant, injecteurs</td></tr>
+            </tbody>
+        </table>
+    </div>
+        <div class="table-container" id="type-panne">
+        <table>
+            <thead>
+                <tr><th>Type EOBD</th><th>Localisation du défaut</th><th>Cause probable</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>P100B</td><td>Pression de carburant trop haute, ligne 2</td><td>Pompe à carburant, électrovanne de commande de régulateur de pression de carburant, injecteurs</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-container" id="prise-diagnostic">
+        <div class="image-container">
+            <img src="diagem.png" alt="Prise diagnostic">
+        </div>
+        <table>
+            <thead>
+                <tr><th>Type EOBD</th><th>Localisation du défaut</th><th>Cause probable</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>P100C</td><td>Distribution variable, ligne 2 - mode de secours - panne du circuit</td><td>Câblage, connexions, calculateur de gestion moteur</td></tr>
+                <tr><td>P100D</td><td>Distribution variable, ligne 2 - mode de secours - la position de bout de course n'a pas été atteinte</td><td>Câblage, connexions, calculateur de gestion moteur</td></tr>
+                <tr><td>P100E</td><td>Distribution variable, ligne 2 - mode de secours - débitmètre d'air massique, panne de signal</td><td>Câblage, connexions, débitmètre d'air massique, calculateur de gestion moteur</td></tr>
+                <tr><td>P100F</td><td>Distribution variable, ligne 1 - protection de surcharge - panne du circuit</td><td>Câblage, connexions</td></tr>
+                <tr><td>P1012</td><td>Distribution variable, ligne 1 panne du circuit de référence</td><td>Câblage, connexions</td></tr>
+                <tr><td>P1013</td><td>Distribution variable, ligne 1 erreur de réinitialisation du circuit de référence</td><td>Câblage, connexions</td></tr>
+                <tr><td>P1014</td><td>Distribution variable, ligne 1- erreur de parité du circuit de référence</td><td>Câblage, connexions</td></tr>
+                <tr><td>P1015</td><td>Distribution variable, ligne 1 erreur de gradient du circuit de référence</td><td>Câblage, connexions</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const menuItems = document.querySelectorAll('.menu-item');
+        const tableContainers = document.querySelectorAll('.table-container');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.dataset.target;
+
+                tableContainers.forEach(table => {
+                    table.style.display = 'none';
+                });
+
+                menuItems.forEach(mi => mi.classList.remove('active'));
+
+                const targetTable = document.getElementById(targetId);
+                if (targetTable) {
+                    targetTable.style.display = 'block';
+                    item.classList.add('active');
+                    if(targetId == "prise-diagnostic"){
+                        document.querySelector("#prise-diagnostic .image-container").style.display = "block";
+                    }else{
+                        document.querySelector("#prise-diagnostic .image-container").style.display = "none";
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

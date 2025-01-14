@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emplacements et Informations</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+        }
+
+        .item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .item p {
+            margin-top: 5px;
+        }
+
+        .item.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: auto;
+            position: relative; /* For the close button */
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="item full-width">
+            <p>Emplacements vidange/rempl. <br> Courroies d'accessoires <br> Emplacements pour le cric <br> Filtre à pollen <br> Raccords de purge de climatisation</p>
+        </div>
+
+        <div class="item" data-modal="courroies-modal">
+            <img src="Courroies d'accessoires.png" alt="Courroies d'accessoires">
+            <p>Courroies d'accessoires</p>
+        </div>
+        <div class="item" data-modal="cric-modal">
+            <img src="cric.png" alt="Emplacements pour le cric">
+            <p>Emplacements pour le cric</p>
+        </div>
+        <div class="item" data-modal="transmission-modal">
+            <img src="transmission.png" alt="Transmission automatique">
+            <p>Transmission automatique</p>
+        </div>
+        <div class="item" data-modal="filtre-modal">
+            <img src="filtre.png" alt="Filtre à pollen">
+            <p>Filtre à pollen</p>
+        </div>
+        <div class="item" data-modal="boite-modal">
+            <img src="boite.png" alt="Boîte de vitesses manuelle">
+            <p>Boîte de vitesses manuelle</p>
+        </div>
+        <div class="item" data-modal="transmission2-modal">
+            <img src="transmission2.png" alt="Transmission automatique 2">
+            <p>Transmission automatique 6HP 19Z/26Z/32Z <br> 35 Nm</p>
+        </div>
+        <div class="item" data-modal="transmission3-modal">
+            <img src="transmission3.png" alt="Transmission automatique 3">
+            <p>Transmission automatique 6HP 19Z/26Z/32Z <br> 35 Nm</p>
+        </div>
+        <div class="item" data-modal="purge-modal">
+            <img src="purge.png" alt="purge">
+            <p>purge <br> 35 Nm</p>
+        </div>
+        <div class="item" data-modal="essieu-modal">
+            <img src="essieuar.png" alt="essieu Ar">
+            <p>essieu Ar </p>
+        </div>
+    </div>
+
+    <div id="courroies-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span> <img src="Courroies d'accessoires.png" alt="Courroies d'accessoires">
+        </div>
+    </div>
+    <div id="cric-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span><img src="cric.png" alt="Emplacements pour le cric">
+        </div>
+    </div>
+    <div id="transmission-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span><img src="transmission.png" alt="Transmission automatique">
+        </div>
+    </div>
+    <div id="filtre-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span><img src="filtre.png" alt="Filtre à pollen">
+        </div>
+    </div>
+    <div id="boite-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span><img src="boite.png" alt="Boîte de vitesses manuelle">
+        </div>
+    </div>
+    <div id="transmission2-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span><img src="transmission2.png" alt="Transmission automatique 2">
+        </div>
+    </div>
+    <div id="transmission3-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span><img src="transmission3.png" alt="Transmission automatique 3">
+        </div>
+    </div>
+    <div id="purge-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span><img src="purge.png" alt="purge">
+        </div>
+    </div>
+    <div id="essieu-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span><img src="essieuar.png" alt="essieu Ar">
+        </div>
+    </div>
+
+    <script>
+        const items = document.querySelectorAll('.item');
+        const modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.close-button');
+
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const modalId = item.dataset.modal;
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'flex';
+                }
+            });
+        });
+
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        modals.forEach(modal => {
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

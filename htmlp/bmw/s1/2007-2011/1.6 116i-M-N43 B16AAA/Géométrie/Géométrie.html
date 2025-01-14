@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailles et pressions des pneus</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+
+        .menu {
+            width: 600px; /* Increased width for longer content */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .menu-item {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .menu-item:last-child{
+            border-bottom:none;
+        }
+
+        .menu-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .menu-item .icon {
+            margin-right: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-item.active .icon {
+            transform: rotate(90deg);
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            border-top: 1px solid #ccc;
+            overflow-x:auto; /* Important for wide tables */
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .info-table th, .info-table td {
+            border: 1px solid #ccc;
+            padding: 5px;
+            text-align: left;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        .info-table th{
+            background-color:#eee;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="menu-item" data-target="dimensions">
+            <span class="icon">&#9658;</span> Dimensions
+            <div class="submenu" id="dimensions">
+                <table class="info-table">
+                    <thead><tr><th></th><th>mm</th></tr></thead>
+                    <tbody>
+                        <tr><td>Empattement</td><td>2660</td></tr>
+                        <tr><td>Voie avant/arrière</td><td>1494/1507<br>120i/d=1484/1497</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="menu-item" data-target="couples-serrage">
+            <span class="icon">&#9658;</span> Couples de serrage
+            <div class="submenu" id="couples-serrage">
+                <table class="info-table">
+                    <tbody>
+                        <tr><td>Couple de serrage - Roues acier</td><td>[120±10 Nm] A</td></tr>
+                        <tr><td>Couple de serrage - Roues alliage</td><td>[120±10 Nm] A</td></tr>
+                        <tr><td>Contre-écrou/pince de biell. d'accouplem.</td><td>40 Nm</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="menu-item" data-target="valeurs-controle">
+            <span class="icon">&#9658;</span> Valeurs de contrôle - Roues avant
+            <div class="submenu" id="valeurs-controle">
+                <table class="info-table">
+                    <thead><tr><th>Position Charges</th><th></th></tr></thead>
+                    <tbody>
+                        <tr><td>Réservoir à carburant-pourcentage plein</td><td>%: 100</td></tr>
+                        <tr><td>Tableau de référence d'assiette</td><td>A</td></tr>
+                        <tr><td>Parallélisme (N = négatif, ouverture)</td><td>mm 0,74-3,18</td></tr>
+                        <tr><td>Parallélisme</td><td>degrés 0°6-0°26'</td></tr>
+                        <tr><td>Parallélisme</td><td>degrés-1/100: 0,10-0,43</td></tr>
+                        <tr><td>Carrossage</td><td>degrés: 0°37'N-0°13'P</td></tr>
+                        <tr><td>Carrossage</td><td>degrés-1/100: 0,62N-0,22P</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="menu-item" data-target="valeurs-reglage">
+            <span class="icon">&#9658;</span> Valeurs de réglage - Toutes les roues
+            <div class="submenu" id="valeurs-reglage">
+                <table class="info-table">
+                    <thead><tr><th>Position Charges.</th><th></th></tr></thead>
+                    <tbody>
+                        <tr><td>Réservoir à carburant-pourcentage plein</td><td>%: 100</td></tr>
+                        <tr><td>Tableau de référence d'assiette</td><td>A</td></tr>
+                        <tr><td>Parallélisme (N=1) négatif, ouverture)</td><td>mm: [1,96±1,22]</td></tr>
+                        <tr><td>Parallélisme</td><td>degrés: [0°16'±10°]</td></tr>
+                        <tr><td>Parallélisme</td><td>degrés-1/100: [0,27±0,17]</td></tr>
+                        <tr><td>Carrossage</td><td>degrés: [0°12'N±25°]</td></tr>
+                        <tr><td>Carrossage</td><td>degrés-1/100: [0,20N±0,42]</td></tr>
+                        <tr><td>Variation max. admissible - G/D</td><td>degrés: [0°30°]</td></tr>
+                        <tr><td>Variation max. admissible - G/D</td><td>degrés-1/100: 0,50</td></tr>
+                        <tr><td>Réglage de carrossage</td><td>Réglable A</td></tr>
+                        <tr><td>Div. en virage avec braquage 20"</td><td>degrés: [1°38'±30']</td></tr>
+                        <tr><td>Div. en virage avec braquage 20"</td><td>degrés-1/100: [1,63±0,50]</td></tr>
+                        <tr><td>Angle braquage max. roues int.</td><td>degrés: [41°22']</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menuItems = document.querySelectorAll('.menu-item');
+        const submenus = document.querySelectorAll('.submenu');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.dataset.target;
+                const targetSubmenu = document.getElementById(targetId);
+
+                submenus.forEach(submenu => {
+                    if (submenu !== targetSubmenu) {
+                        submenu.classList.remove('active');
+                    }
+                });
+                menuItems.forEach(mi => {
+                    if (mi !== item) {
+                        mi.classList.remove('active');
+                    }
+                });
+                targetSubmenu.classList.toggle('active');
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

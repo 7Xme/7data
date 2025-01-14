@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide d'entretien et Indicateur de maintenance</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0; /* Remove default body margin */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Ensure full viewport height */
+            background-color: lightblue; /* Background color */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-decoration: none; /* Remove underlines from links */
+            color: black;
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+        }
+        .menu-item:hover{
+            background-color:#eee;
+        }
+
+        .menu-item img {
+            max-width: 100px; /* Adjust image size as needed */
+            margin-right: 10px;
+        }
+        .menu-item span{
+            flex:1;
+            text-align:center;
+            font-size:1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="#" class="menu-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/4-stroke_engine.gif/220px-4-stroke_engine.gif" alt="Guide d'entretien">
+            <span>Guide d'entretien et de révision</span>
+        </a>
+        <a href="#" class="menu-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Speedometer_with_needle_in_red_area.svg/1200px-Speedometer_with_needle_in_red_area.svg.png" alt="Indicateur de maintenance">
+            <span>Indicateur de maintenance</span>
+        </a>
+    </div>
+
+</body>
+</html>

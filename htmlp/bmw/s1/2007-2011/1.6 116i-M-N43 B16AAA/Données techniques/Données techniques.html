@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste Complète des Données</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .menu {
+            width: 400px; /* Adjust width as needed */
+            background-color: #e0e0e0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .menu-item {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+            display: flex; /* Use flexbox for icon alignment */
+            align-items: center; /* Vertically align icon and text */
+        }
+        .menu-item:last-child{
+            border-bottom:none;
+        }
+
+        .menu-item:hover {
+            background-color: #d0d0d0;
+        }
+
+        .menu-item .icon {
+            margin-right: 10px;
+            transition: transform 0.2s ease; /* Smooth icon rotation */
+        }
+
+        .menu-item.active .icon {
+            transform: rotate(90deg); /* Rotate icon when active */
+        }
+
+        .table-container {
+            display: none; /* Hide tables by default */
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow-x: auto; /* Add horizontal scroll if table is too wide */
+        }
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+        th,td{
+            border:1px solid #ccc;
+            padding:8px;
+            text-align:left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="menu-item" data-target="vehicule">
+            <span class="icon">&#9658;</span> Identification du véhicule
+        </div>
+        <div class="menu-item" data-target="allumage">
+            <span class="icon">&#9658;</span> Système d'allumage
+        </div>
+        <div class="menu-item" data-target="reglage">
+            <span class="icon">&#9658;</span> Réglage moteur et analyse des gaz
+        </div>
+        <div class="menu-item" data-target="bougies">
+            <span class="icon">&#9658;</span> Bougies
+        </div>
+        <div class="menu-item" data-target="carburant">
+            <span class="icon">&#9658;</span> Alimentation carburant
+        </div>
+        <div class="menu-item" data-target="mise-au-point">
+            <span class="icon">&#9658;</span> Mise au point et entretien
+        </div>
+        <div class="menu-item" data-target="lubrifiants">
+            <span class="icon">&#9658;</span> Lubrifiants et capacités
+        </div>
+        <div class="menu-item" data-target="couples">
+            <span class="icon">&#9658;</span> Couples de serrage
+        </div>
+        <div class="menu-item" data-target="charge">
+            <span class="icon">&#9658;</span> Charge et démarrage
+        </div>
+        <div class="menu-item" data-target="freins">
+            <span class="icon">&#9658;</span> Disques et tambours de freins
+        </div>
+        <div class="menu-item" data-target="climatisation">
+            <span class="icon">&#9658;</span> Climatisation
+        </div>
+    </div>
+
+    <div class="table-container" id="vehicule">
+        <table>
+            <thead><tr><th>Champ</th><th>Valeur</th></tr></thead>
+            <tbody><tr><td>Modèle</td><td>Exemple Modèle</td></tr><tr><td>VIN</td><td>Exemple VIN</td></tr></tbody>
+        </table>
+    </div>
+
+    <div class="table-container" id="allumage">
+        <table><thead><tr><th>Composant</th><th>État</th></tr></thead><tbody><tr><td>Bobine</td><td>OK</td></tr></tbody></table>
+    </div>
+        <div class="table-container" id="reglage">
+        <table><thead><tr><th>Paramètre</th><th>Valeur</th></tr></thead><tbody><tr><td>CO</td><td>0.1%</td></tr></tbody></table>
+    </div>
+        <div class="table-container" id="bougies">
+        <table><thead><tr><th>Type</th><th>Référence</th></tr></thead><tbody><tr><td>Iridium</td><td>Exemple</td></tr></tbody></table>
+    </div>
+        <div class="table-container" id="carburant">
+        <table><thead><tr><th>Type</th><th>Quantité</th></tr></thead><tbody><tr><td>Essence</td><td>50L</td></tr></tbody></table>
+    </div>
+        <div class="table-container" id="mise-au-point">
+        <table><thead><tr><th>Opération</th><th>Date</th></tr></thead><tbody><tr><td>Vidange</td><td>2024</td></tr></tbody></table>
+    </div>
+        <div class="table-container" id="lubrifiants">
+        <table><thead><tr><th>Type</th><th>Quantité</th></tr></thead><tbody><tr><td>Huile Moteur</td><td>5L</td></tr></tbody></table>
+    </div>
+        <div class="table-container" id="couples">
+        <table><thead><tr><th>Vis</th><th>Couple</th></tr></thead><tbody><tr><td>Culasse</td><td>20Nm</td></tr></tbody></table>
+    </div>
+        <div class="table-container" id="charge">
+        <table><thead><tr><th>Tension</th><th>Ampérage</th></tr></thead><tbody><tr><td>12V</td><td>50A</td></tr></tbody></table>
+    </div>
+        <div class="table-container" id="freins">
+        <table><thead><tr><th>Disque</th><th>État</th></tr></thead><tbody><tr><td>Avant</td><td>Bon</td></tr></tbody></table>
+    </div>
+        <div class="table-container" id="climatisation">
+        <table><thead><tr><th>Gaz</th><th>Quantité</th></tr></thead><tbody><tr><td>R134a</td><td>500g</td></tr></tbody></table>
+    </div>
+
+    <script>
+        const menuItems = document.querySelectorAll('.menu-item');
+        const tableContainers = document.querySelectorAll('.table-container');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.dataset.target;
+
+                // Hide all tables
+                tableContainers.forEach(table => {
+                    table.style.display = 'none';
+                });
+
+                // Remove 'active' class from all menu items
+                menuItems.forEach(mi => mi.classList.remove('active'));
+
+                // Show the target table and add 'active' class to the clicked item
+                const targetTable = document.getElementById(targetId);
+                if (targetTable) {
+                    targetTable.style.display = 'block';
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

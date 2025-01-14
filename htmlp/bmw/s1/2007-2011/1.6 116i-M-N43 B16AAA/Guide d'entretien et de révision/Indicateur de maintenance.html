@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informations de Révision</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            display: flex; /* Use flexbox for layout */
+        }
+
+        .menu {
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-right: 20px; /* Add space between menu and content */
+        }
+
+        .menu-item {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .menu-item:last-child{
+            border-bottom:none;
+        }
+
+        .menu-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .content {
+            flex: 1; /* Allow content to take up remaining space */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .content h2 {
+            margin-top: 0;
+        }
+
+        .content img {
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+        .hidden{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="menu-item" data-target="temoin">Accéder aux informations concernant la révision à l'aide du témoin de périodicité de révision</div>
+        <div class="menu-item" data-target="idrive">Accéder aux informations concernant la révision à l'aide du i-drive</div>
+        <div class="menu-item" data-target="rearmement">Réarmement des témoins de périodicité de révision</div>
+    </div>
+
+    <div class="content">
+        <div id="temoin" class="hidden">
+            <h2>Accéder aux informations concernant la révision à l'aide du témoin de périodicité de révision</h2>
+            <p>N.B. Ces instructions permettent l'identification des groupes d'opérations de révision supplémentaires (éléments) nécessitant une intervention. Consulter le guide d'entretien et de révision pour obtenir le détail des opérations à effectuer.</p>
+            <img src="1.png" alt="Image 1">
+        </div>
+
+        <div id="idrive" class="hidden">
+            <h2>Accéder aux informations concernant la révision à l'aide du i-drive</h2>
+            <p>Contenu spécifique pour l'accès via i-drive.</p>
+            <img src="2.png" alt="Image 2">
+        </div>
+
+        <div id="rearmement" class="hidden">
+            <h2>Réarmement des témoins de périodicité de révision</h2>
+            <p>S'assurer que toutes les portes sont fermées.</p>
+            <p>Mettre le contact.</p>
+            <p>Exercer une légère pression vers le haut ou vers le bas sur le bouton [A] jusqu'à ce que le symbole [D] s'affiche et que les mots "SERVICE-INFO" (INFO REVISION) s'affichent sur le cadran du compteur kilométrique [E].</p>
+            <p>Appuyer sur le bouton [B].</p>
+            <p>Le premier symbole représentant le groupe d'opérations de révision supplémentaires (élément) apparaît et la date et la distance restant avant la prochaine révision apparaissent sur le cadran du compteur kilométrique.</p>
+            <img src="3.png" alt="Image 3">
+            <p>Exercer une pression vers le haut sur le bouton [A] pour faire apparaître successivement chaque élément de révision.</p>
+            <p>Pour quitter le menu, couper le contact.</p>
+        </div>
+    </div>
+
+    <script>
+        const menuItems = document.querySelectorAll('.menu-item');
+        const contentDivs = document.querySelectorAll('.content > div');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.dataset.target;
+
+                contentDivs.forEach(div => {
+                    div.classList.add('hidden'); // Hide all content divs
+                });
+
+                const targetDiv = document.getElementById(targetId);
+                if (targetDiv) {
+                    targetDiv.classList.remove('hidden'); // Show the target div
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

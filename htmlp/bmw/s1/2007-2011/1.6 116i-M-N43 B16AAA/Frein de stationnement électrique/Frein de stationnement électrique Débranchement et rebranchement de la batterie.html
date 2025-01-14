@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localisation de la batterie</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            display: flex; /* Use flexbox for layout */
+        }
+
+        .menu {
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-right: 20px;
+        }
+
+        .menu-item {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .content {
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .content h2 {
+            margin-top: 0;
+        }
+
+        .content img {
+            max-width: 100%;
+            display: block;
+            margin: 10px auto; /* Center the image */
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="menu-item" data-target="localisation">Localisation de la batterie</div>
+        <div class="menu-item" data-target="remarques">Remarques générales</div>
+        <div class="menu-item" data-target="avant-debranchement">Avant le débranchement de la batterie</div>
+        <div class="menu-item" data-target="avant-branchement">Avant le branchement de la batterie</div>
+        <div class="menu-item" data-target="apres-branchement">Après le branchement de la batterie</div>
+    </div>
+
+    <div class="content">
+        <div id="localisation" class="hidden">
+            <h2>Localisation de la batterie</h2>
+            <p>Berline Fig.1.</p>
+            <p>Coupé/décapotable Fig.2.</p>
+            <img src="batterie_localisation.png" alt="Localisation de la batterie">
+        </div>
+
+        <div id="remarques" class="hidden">
+            <h2>Remarques générales</h2>
+            <p>Contenu des remarques générales.</p>
+            <img src="remarque.png" alt="remarque">
+        </div>
+
+         <div id="avant-debranchement" class="hidden">
+            <h2>Avant le débranchement de la batterie</h2>
+            <p>Contenu avant le débranchement de la batterie.</p>
+            <img src="avant_debranchement.png" alt="Avant le débranchement de la batterie">
+        </div>
+        <div id="avant-branchement" class="hidden">
+            <h2>Avant le branchement de la batterie</h2>
+            <p>Contenu avant le branchement de la batterie.</p>
+            <img src="avant_branchement.png" alt="Avant le branchement de la batterie">
+        </div>
+        <div id="apres-branchement" class="hidden">
+            <h2>Après le branchement de la batterie</h2>
+            <p>Contenu après le branchement de la batterie.</p>
+            <img src="apres_branchement.png" alt="Après le branchement de la batterie">
+        </div>
+    </div>
+
+    <script>
+        const menuItems = document.querySelectorAll('.menu-item');
+        const contentDivs = document.querySelectorAll('.content > div');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.dataset.target;
+
+                contentDivs.forEach(div => {
+                    div.classList.add('hidden');
+                });
+
+                const targetDiv = document.getElementById(targetId);
+                if (targetDiv) {
+                    targetDiv.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Show the first content div by default
+        if (contentDivs.length > 0) {
+            contentDivs[0].classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>

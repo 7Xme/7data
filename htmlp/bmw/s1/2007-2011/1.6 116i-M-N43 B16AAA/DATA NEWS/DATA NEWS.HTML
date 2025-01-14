@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATA NEWS - Bulletin d'Informations Après-Vente</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #e0e0e0;
+            padding: 15px;
+            border-right: 1px solid #ccc;
+            overflow-y: auto;
+            height: calc(100vh - 40px);
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .sidebar li > a {
+            display: block;
+            padding: 5px 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .sidebar li:hover > a {
+            background-color: #d0d0d0;
+        }
+
+        .sidebar ul ul {
+            display: none;
+            padding-left: 20px;
+            background-color: #f0f0f0;
+            border-radius: 3px;
+            margin-top: 5px;
+        }
+
+        .sidebar li.active > ul {
+            display: block;
+        }
+
+        .sidebar ul ul li {
+            padding: 3px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 15px;
+            background-color: white;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-left: 20px;
+        }
+
+        .bulletin {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: blue;
+        }
+
+        h2 {
+            margin-top: 15px;
+            color: purple;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .pieces-title {
+            text-align: center;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <ul>
+            <li class="has-submenu">
+                <a href="#">Bruit, vibrations et dureté</a>
+                <ul>
+                    <li><a href="#" data-target="bourdonnement-moteur">Bourdonnement moteur</a></li>
+                    <li><a href="#" data-target="bruit-suspension">Bruit suspension avant</a></li>
+                    <li><a href="#" data-target="claquements-arriere">Claquements arrière</a></li>
+                    <li><a href="#" data-target="mauvaise-clim">Mauvaise performance clim</a></li>
+                    <li><a href="#" data-target="vibrations-volant">Vibrations volant</a></li>
+                </ul>
+            </li>
+            <li class="has-submenu">
+                <a href="#">Caisse</a>
+                <ul>
+                    <li><a href="#" data-target="jeu-direction">Jeu dans la direction</a></li>
+                    <li><a href="#" data-target="bruit-direction">Bruit de direction</a></li>
+                    <li><a href="#" data-target="vibrations-direction">Vibrations dans la direction</a></li>
+                    <li><a href="#" data-target="direction-assistee">Problèmes de direction assistée</a></li>
+                    <li><a href="#" data-target="usure-pneus-direction">Usure anormale des pneus (liée à la direction)</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content" id="main-content">
+        <p>Sélectionnez un élément dans le menu.</p>
+
+        <div id="bourdonnement-moteur" class="bulletin" style="display:none;">
+            <h1>DATA NEWS<br>Bourdonnement Moteur</h1><p>Contenu sur le bourdonnement moteur...</p>
+        </div>
+
+        <div id="bruit-suspension" class="bulletin" style="display:none;">
+            <h1>DATA NEWS<br>Bruit Suspension Avant</h1><p>Contenu sur le bruit de suspension avant...</p>
+        </div>
+
+        <div id="claquements-arriere" class="bulletin" style="display:none;">
+            <h1>DATA NEWS<br>Claquements Arrière</h1><p>Contenu sur les claquements arrière...</p>
+        </div>
+
+        <div id="mauvaise-clim" class="bulletin" style="display:none;">
+            <h1>DATA NEWS<br>Mauvaise Performance Clim</h1><p>Contenu sur la mauvaise performance de la clim...</p>
+        </div>
+
+        <div id="vibrations-volant" class="bulletin" style="display:none;">
+            <h1>DATA NEWS<br>Vibrations Volant</h1><p>Contenu sur les vibrations du volant...</p>
+        </div>
+        <div id="jeu-direction" class="bulletin" style="display:none;">
+            <h1>DATA NEWS<br>Jeu dans la direction</h1><p>Contenu sur le jeu dans la direction...</p>
+        </div>
+        <div id="bruit-direction" class="bulletin" style="display:none;">
+            <h1>DATA NEWS<br>Bruit de direction</h1><p>Contenu sur le bruit de direction...</p>
+        </div>
+        <div id="vibrations-direction" class="bulletin" style="display:none;">
+            <h1>DATA NEWS<br>Vibrations dans la direction</h1><p>Contenu sur les vibrations dans la direction...</p>
+        </div>
+        <div id="direction-assistee" class="bulletin" style="display:none;">
+            <h1>DATA NEWS<br>Problèmes de direction assistée</h1><p>Contenu sur les problèmes de direction assistée...</p>
+        </div>
+        <div id="usure-pneus-direction" class="bulletin" style="display:none;">
+            <h1>DATA NEWS<br>Usure anormale des pneus (liée à la direction)</h1><p>Contenu sur l'usure anormale des pneus...</p>
+        </div>
+    </div>
+
+    <script>
+        const menuItems = document.querySelectorAll('.sidebar li.has-submenu');
+        const bulletins = document.querySelectorAll('.bulletin');
+        const submenuLinks = document.querySelectorAll('.sidebar ul ul a');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        submenuLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                bulletins.forEach(bulletin => {
+                    bulletin.style.display = 'none';
+                });
+
+                const targetId = link.dataset.target;
+                const targetBulletin = document.getElementById(targetId);
+
+                if (targetBulletin) {
+                    targetBulletin.style.display = 'block';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

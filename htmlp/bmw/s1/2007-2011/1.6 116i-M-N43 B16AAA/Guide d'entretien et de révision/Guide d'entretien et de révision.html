@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Révision Véhicule</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            display: flex; /* Use flexbox for layout */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column; /* Stack sections vertically */
+            width: 600px; /* Adjust as needed */
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .section{
+            border: 1px solid #ccc;
+            margin-bottom:10px;
+            padding:10px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+        }
+        .section-title .icon{
+            margin-right:5px;
+            transition: transform 0.2s ease;
+        }
+        .section-title.active .icon{
+            transform:rotate(90deg);
+        }
+        .section-content {
+            display: none; /* Hide content by default */
+            padding-left: 20px;
+            margin-top:5px;
+        }
+        .section-content.active{
+            display:block;
+        }
+
+        .checkbox-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .checkbox-list li {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center; /* Align checkbox and label */
+        }
+
+        .checkbox-list input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        #total-time{
+            font-weight:bold;
+            margin-top:10px;
+        }
+        .button-container{
+            display:flex;
+            justify-content:space-between;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section">
+            <div class="section-title" data-target="routine">
+                <span class="icon">&#9658;</span> Révision principale
+            </div>
+            <div class="section-content active" id="routine">
+                <label for="routine-time">Temps de main d'œuvre (hrs):</label>
+                <input type="number" id="routine-time" value="0.20" step="0.01">
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title" data-target="principales">
+                <span class="icon">&#9658;</span> Opérations de révision principales
+            </div>
+            <div class="section-content" id="principales">
+                <ul class="checkbox-list">
+                    <li><input type="checkbox" id="abs"><label for="abs">1.0090 Système avertisseur ABS</label></li>
+                    <li><input type="checkbox" id="autodiagnostic"><label for="autodiagnostic">1.0100 Codes d'autodiagnostic</label></li>
+                    <li><input type="checkbox" id="instruments"><label for="instruments">1.0110 Instruments du tableau de bord</label></li>
+                    <li><input type="checkbox" id="maintenance"><label for="maintenance">5.0050 Indicateur de maintenance</label></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title" data-target="supplementaires">
+                <span class="icon">&#9658;</span> Éléments de révision supplémentaires
+            </div>
+            <div class="section-content" id="supplementaires">
+                <ul class="checkbox-list">
+                    <li><input type="checkbox" id="huile"><label for="huile">Huile moteur</label></li>
+                    <li><input type="checkbox" id="plaquettes-avant"><label for="plaquettes-avant">Plaquettes de freins avant</label></li>
+                    <li><input type="checkbox" id="plaquettes-arriere"><label for="plaquettes-arriere">Plaquettes de freins arrière</label></li>
+                    <li><input type="checkbox" id="liquide"><label for="liquide">Liquide de frein</label></li>
+                    <li><input type="checkbox" id="controle"><label for="controle">Contrôle du véhicule</label></li>
+                </ul>
+            </div>
+        </div>
+        <div id="total-time">Temps total: 0.20 hrs</div>
+        <div class="button-container">
+            <button id="deselect-all">Tout désélectionner</button>
+            <button id="select-all">Tout sélectionner</button>
+        </div>
+    </div>
+
+    <script>
+        const sectionTitles = document.querySelectorAll('.section-title');
+        const sectionContents = document.querySelectorAll('.section-content');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const routineTimeInput = document.getElementById('routine-time');
+        const totalTimeDisplay = document.getElementById('total-time');
+        const deselectAllButton = document.getElementById("deselect-all")
+        const selectAllButton = document.getElementById("select-all")
+
+        function calculateTotalTime() {
+            let totalTime = parseFloat(routineTimeInput.value) || 0;
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    totalTime += 0.20; // Add 0.20 for each checked box
+                }
+            });
+            totalTimeDisplay.textContent = `Temps total: ${totalTime.toFixed(2)} hrs`;
+        }
+
+        sectionTitles.forEach(title => {
+            title.addEventListener('click', () => {
+                const targetId = title.dataset.target;
+                const targetContent = document.getElementById(targetId);
+
+                sectionContents.forEach(content => {
+                    if (content !== targetContent) {
+                        content.classList.remove('active');
+                    }
+                });
+                sectionTitles.forEach(ti =>{
+                    if(ti !== title){
+                        ti.classList.remove("active")
+                    }
+                })
+
+                targetContent.classList.toggle('active');
+                title.classList.toggle("active")
+            });
+        });
+
+        routineTimeInput.addEventListener('input', calculateTotalTime);
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', calculateTotalTime);
+        });
+        deselectAllButton.addEventListener("click", ()=>{
+            checkboxes.forEach(checkbox =>{
+                checkbox.checked = false;
+            })
+            calculateTotalTime()
+        })
+        selectAllButton.addEventListener("click", ()=>{
+            checkboxes.forEach(checkbox =>{
+                checkbox.checked = true;
+            })
+            calculateTotalTime()
+        })
+
+        // Initial calculation
+        calculateTotalTime();
+    </script>
+
+</body>
+</html>

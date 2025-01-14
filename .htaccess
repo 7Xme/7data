@@ -1,0 +1,22 @@
+RewriteEngine On
+
+# Allow access to specific files without redirection
+RewriteCond %{REQUEST_URI} ^/login.php [OR]
+RewriteCond %{REQUEST_URI} ^/logout.php [OR]
+RewriteCond %{REQUEST_URI} ^/db_connect.php [OR]
+RewriteCond %{REQUEST_URI} ^/functions.php [OR]
+RewriteCond %{REQUEST_URI} ^/styles.css [OR]
+RewriteCond %{REQUEST_URI} ^/images/ [OR]
+RewriteCond %{REQUEST_URI} ^/versions.php [OR]
+RewriteCond %{REQUEST_URI} ^/vehicle_data.php [OR]
+RewriteCond %{REQUEST_URI} ^/models.php [OR]
+RewriteCond %{REQUEST_URI} ^/index.php [OR]
+RewriteCond %{REQUEST_URI} ^/admin.php [OR]
+RewriteCond %{REQUEST_URI} ^/get_years.php [OR]
+RewriteCond %{REQUEST_URI} ^/years.php
+RewriteRule ^ - [L]
+
+# Redirect to login page if not logged in
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ login.php [L]

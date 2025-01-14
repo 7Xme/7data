@@ -1,0 +1,31 @@
+function updateYears() {
+    var modelId = document.getElementById('model_id').value;
+    var yearSelect = document.getElementById('year_id');
+    yearSelect.innerHTML = '';
+
+    console.log("Model ID selected:", modelId); // Check the model ID
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'get_years.php?model_id=' + modelId, true);
+    xhr.onload = function() {
+        console.log("XHR status:", xhr.status); // Check the HTTP status
+        console.log("XHR response:", xhr.responseText); // Check the raw response
+
+        if (xhr.status === 200) {
+            try {
+                var years = JSON.parse(xhr.responseText);
+                console.log("Parsed JSON:", years); // Check the parsed JSON
+
+                years.forEach(function(year) {
+                    var option = document.createElement('option');
+                    option.value = year.year_id;
+                    option.textContent = year.year;
+                    yearSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error("JSON parsing error:", error); // Check for JSON parsing errors
+            }
+        }
+    };
+    xhr.send();
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu avec Sous-Menus et Informations</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+
+        .menu {
+            width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .menu-item {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .menu-item:last-child{
+            border-bottom:none;
+        }
+
+        .menu-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .menu-item .icon {
+            margin-right: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .menu-item.active .icon {
+            transform: rotate(90deg);
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            border-top: 1px solid #ccc; /* Add a top border for visual separation */
+        }
+
+        .submenu.active {
+            display: block;
+        }
+        .info-table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:10px;
+        }
+        .info-table th, .info-table td{
+            border:1px solid #ccc;
+            padding:5px;
+            text-align:left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="menu-item" data-target="moteur">
+            <span class="icon">&#9658;</span> A Moteur
+            <div class="submenu" id="moteur">
+                <div class="menu-item sub-item" data-info="moteur-info">A1 Moteur</div>
+                <div class="menu-item sub-item" data-info="culasse-info">A2 Culasse</div>
+                <div class="menu-item sub-item" data-info="arbre-info">A3 Arbre à cames et distribution</div>
+                <div class="menu-item sub-item" data-info="vilebrequin-info">A4 Vilebrequin et pistons</div>
+                <div class="menu-item sub-item" data-info="lubrification-info">A5 Lubrification</div>
+
+            </div>
+        </div>
+        <div class="menu-item" data-target="gestion-allumage">
+            <span class="icon">&#9658;</span> B Gestion moteur - allumage
+            <div class="submenu" id="gestion-allumage">
+                <div class="menu-item sub-item" data-info="systeme-allumage">B1 Système d'allumage
+                    <table class="info-table" id="systeme-allumage-info">
+                        <thead><tr><th></th><th>Heures</th></tr></thead>
+                        <tbody>
+                            <tr><td>Calculateur d'allumage/carburant</td><td>D&R: 0,35</td></tr>
+                            <tr><td>Bougies d'allumage</td><td>D&R: 0,75</td></tr>
+                            <tr><td>Bobines d'allumage</td><td>D&R: 0,95</td></tr>
+                            <tr><td>Capteur de régime moteur (allumeur)</td><td>D&R: 0,25</td></tr>
+                            <tr><td>Capteur de régime moteur (vilebrequin)</td><td>D&R: 1,70</td></tr>
+                            <tr><td>Capteur de cliquetis</td><td>D&R: 2,00</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <script>
+        const menuItems = document.querySelectorAll('.menu-item');
+        const submenus = document.querySelectorAll('.submenu');
+        const infoTables = document.querySelectorAll('.info-table');
+        const subItems = document.querySelectorAll(".sub-item")
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.dataset.target;
+                const targetSubmenu = document.getElementById(targetId);
+
+                submenus.forEach(submenu => {
+                    if (submenu !== targetSubmenu) {
+                        submenu.classList.remove('active');
+                    }
+                });
+                 menuItems.forEach(mi => {
+                    if (mi !== item) {
+                        mi.classList.remove('active');
+                    }
+                });
+                targetSubmenu.classList.toggle('active');
+                item.classList.toggle('active');
+
+            });
+        });
+        subItems.forEach(subItem =>{
+            subItem.addEventListener("click", ()=>{
+                const targetInfo = subItem.dataset.info + "-info";
+                infoTables.forEach(table =>{
+                    if(table.id !== targetInfo){
+                        table.style.display = "none";
+                    }
+                })
+                document.getElementById(targetInfo).style.display = "table";
+            })
+        })
+    </script>
+
+</body>
+</html>

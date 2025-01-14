@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarme/verrouillage central à distance</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            display: flex;
+        }
+
+        .menu {
+            width: 350px; /* Increased width for longer menu items */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-right: 20px;
+        }
+
+        .menu-item {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+            text-align: left; /* Align menu text to the left */
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .content {
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .content h2 {
+            margin-top: 0;
+        }
+
+        .content img {
+            max-width: 100%;
+            display: block;
+            margin: 10px auto;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="menu-item" data-target="fonctionnement">Fonctionnement du système</div>
+        <div class="menu-item" data-target="remplacement-piles-avec">Remplacement des piles - avec système d'entrée sans clé</div>
+        <div class="menu-item" data-target="remplacement-piles-sans">Remplacement des piles - sans système d'entrée sans clé</div>
+        <div class="menu-item" data-target="antidemarrage">Antidémarrage</div>
+        <div class="menu-item" data-target="programmation">Programmation</div>
+    </div>
+
+    <div class="content">
+        <div id="fonctionnement" class="hidden">
+            <h2>Fonctionnement du système</h2>
+            <h3>Avec système d'entrée sans clé</h3>
+            <ul>
+                <li>L'alarme/le verrouillage centralisé peut être désactivé(e) avec la fonction "mains libres":
+                    <ul>
+                        <li>S'approcher du véhicule avec la commande à distance, saisir la poignée de porte conducteur ou passager: Le véhicule est déverrouillé et l'alarme est désactivée.</li>
+                        <li>S'approcher du véhicule avec la commande à distance, appuyer sur le bouton de déverrouillage du coffre/hayon: L'alarme est désactivée et le coffre/hayon s'ouvre.</li>
+                    </ul>
+                </li>
+                <li>L'alarme/le verrouillage centralisé peut être activé(e) avec la fonction "mains libres":
+                    <ul>
+                        <li>Couper le contact.</li>
+                        <li>S'assurer que les portes et le coffre/hayon sont fermés.</li>
+                        <li>Press lock button on driver's or passenger's door handle for 1 second to lock the vehicle and activate the alarm.</li>
+                        <li>Maintenir le bouton verrouillage sur la poignée de porte conducteur ou passager enfoncé pour fermer les vitres et le toit ouvrant et replier les rétroviseurs.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3>Tous les modèles</h3>
+            <p>N.B.: Les fonctions d'alarme/de verrouillage centralisé peuvent être modifiées à l'aide de la commande à distance, du système de commande multifonction embarqué du véhicule et de l'équipement de diagnostic.</p>
+            <ul>
+                <li>Appuyer une fois sur le bouton verrouillage de la commande à distance Fig. 1 [1] pour activer le verrouillage centralisé et l'alarme.</li>
+                <li>Maintenir le bouton verrouillage de la commande à distance Fig. 1 [1] enfoncé pour fermer les vitres et le toit ouvrant et replier les rétroviseurs.</li>
+                <li>Appuyer une fois sur le bouton déverrouillage Fig. 1 [2] de la commande à distance pour désactiver le verrouillage centralisé et l'alarme.</li>
+                <li>Maintenir le bouton déverrouillage de la commande à distance Fig. 1 [2] enfoncé pour ouvrir les vitres et le toit ouvrant.</li>
+                <li>Appuyer sur le bouton déverrouillage Fig. 1 [3] du coffre/hayon de la commande à distance pour déverrouiller le coffre/hayon.</li>
+                <li>Il y a une clé d'urgence Fig. 1 [4] dans la commande à distance.</li>
+            </ul>
+             <img src="telecommande.png" alt="Télécommande">
+        </div>
+
+        <div id="remplacement-piles-avec" class="hidden">
+            <h2>Remplacement des piles - avec système d'entrée sans clé</h2>
+            <p>Contenu spécifique pour le remplacement des piles avec système d'entrée sans clé.</p>
+            <img src="pile.png" alt="pile">
+        </div>
+
+        <div id="remplacement-piles-sans" class="hidden">
+            <h2>Remplacement des piles - sans système d'entrée sans clé</h2>
+            <p>Contenu spécifique pour le remplacement des piles sans système d'entrée sans clé.</p>
+            <img src="pile.png" alt="pile">
+        </div>
+        <div id="antidemarrage" class="hidden">
+            <h2>Antidémarrage</h2>
+            <p>Contenu spécifique pour l'antidémarrage.</p>
+            <img src="antidemarrage.png" alt="antidemarrage">
+        </div>
+        <div id="programmation" class="hidden">
+            <h2>Programmation</h2>
+            <p>Quand: Ajout ou remplacement de commande à distance.</p>
+            <p>Comment: Instructions pour la programmation.</p>
+            <img src="programmation.png" alt="programmation">
+        </div>
+    </div>
+
+    <script>
+        const menuItems = document.querySelectorAll('.menu-item');
+        const contentDivs = document.querySelectorAll('.content > div');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.dataset.target;
+
+                contentDivs.forEach(div => {
+                    div.classList.add('hidden');
+                });
+
+                const targetDiv = document.getElementById(targetId);
+                if (targetDiv) {
+                    targetDiv.classList.remove('hidden');
+                }
+            });
+        });
+
+        if (contentDivs.length > 0) {
+            contentDivs[0].classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>
